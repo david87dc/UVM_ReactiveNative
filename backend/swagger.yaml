@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  title: API de Clientes
+  version: 1.0.0
+  description: Documentación de la API para la gestión de clientes
+
+servers:
+  - url: http://localhost:3000
+
+tags:
+  - name: Clientes
+    description: Endpoints para gestión de clientes
+
+paths:
+  /clientes:
+    get:
+      summary: Obtiene todos los clientes
+      tags: [Clientes]
+      responses:
+        200:
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      summary: Crea un nuevo cliente
+      tags: [Clientes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        201:
+          description: Cliente creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+
+  /clientes/{id}:
+    get:
+      summary: Obtiene un cliente por ID
+      tags: [Clientes]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del cliente
+      responses:
+        200:
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        404:
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Actualiza un cliente existente
+      tags: [Clientes]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        200:
+          description: Cliente actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+    delete:
+      summary: Elimina (soft delete) un cliente
+      tags: [Clientes]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del cliente
+      responses:
+        200:
+          description: Cliente eliminado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+        apellido:
+          type: string
+        fecha_nacimiento:
+          type: string
+          format: date
+        correo:
+          type: string
+        is_deleted:
+          type: boolean

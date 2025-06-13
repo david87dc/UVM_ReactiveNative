@@ -12,7 +12,7 @@ tags:
     description: Endpoints para gestión de clientes
 
 paths:
-  /clientes:
+  /api/v1/clientes:
     get:
       summary: Obtiene todos los clientes
       tags: [Clientes]
@@ -42,7 +42,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Cliente'
 
-  /clientes/{id}:
+  /api/v1/clientes/{id}:
     get:
       summary: Obtiene un cliente por ID
       tags: [Clientes]

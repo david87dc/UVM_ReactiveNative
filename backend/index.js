@@ -12,7 +12,7 @@ const clientesRoutes = require('./routes/cliente');
 
 
 app.use(express.json());
-app.use('/clientes', clientesRoutes);
+app.use('/api/v1/clientes', clientesRoutes);
 
 // Documentación Swagger disponible en /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

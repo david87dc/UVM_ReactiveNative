@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./swagger.yaml');
+const swaggerDocument = YAML.load('./swagger/swagger.yaml');
 
 const sequelize = require('./config/db');
 const clientesRoutes = require('./routes/cliente');

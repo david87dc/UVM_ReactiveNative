@@ -17,6 +17,7 @@ exports.getById = async (req, res) => {
     const cliente = await Cliente.findOne({ where: { id, is_deleted: false } });
     res.json(cliente);
   } catch (err) {
+    console.error("Error al obtener Cliente por Id: ",err.message);
     res.status(500).json({ error: err.message });
   }
 };
@@ -27,6 +28,8 @@ exports.create = async (req, res) => {
     const cliente = await Cliente.create(req.body);
     res.status(201).json(cliente);
   } catch (err) {
+    console.error("Error al crear el cliente: ",err.message);
+
     res.status(500).json({ error: err.message });
   }
 };
@@ -39,6 +42,8 @@ exports.update = async (req, res) => {
     const updated = await Cliente.findByPk(id);
     res.json(updated);
   } catch (err) {
+    console.error("Error al crear al actualizar el cliente: ",err.message);
+
     res.status(500).json({ error: err.message });
   }
 };
@@ -50,6 +55,7 @@ exports.delete = async (req, res) => {
     await Cliente.update({ is_deleted: true }, { where: { id } });
     res.json({ message: 'Cliente eliminado' });
   } catch (err) {
+    console.error("Error al eliminar el cliente: ",err.message);
     res.status(500).json({ error: err.message });
   }
 };

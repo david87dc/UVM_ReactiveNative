@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
-
+//Importar la definición con Swagger
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger/swagger.yaml');

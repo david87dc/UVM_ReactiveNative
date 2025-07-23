@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  list: {
+    padding: 16,
+  },
   card: {
     backgroundColor: '#fff',
     borderRadius: 12,
@@ -23,5 +26,14 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#2a2a2a',
   },
-  // ...otros estilos...
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  infoText: {
+    marginLeft: 8,
+    fontSize: 16,
+    color: '#555',
+  },
 });

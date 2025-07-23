@@ -3,7 +3,9 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet,TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from './styles/ClientList.styles';
+import styles from '../styles/ClientList.styles'; 
+
+
 const ClienteItem = ({ cliente, onEdit}) => (
    <View style={styles.card}>
     <View style={styles.headerRow}>

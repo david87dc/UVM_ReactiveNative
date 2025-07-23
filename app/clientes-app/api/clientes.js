@@ -31,3 +31,32 @@ export async function getClienteById(id) {
     return response.json(); //Devuelve el cliente por ID
     
 }
+
+
+export async function updateCliente(id, clienteData) {
+    const response = await fetch(`${API_BASE_URL}/clientes/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clienteData),
+    });
+    if (!response.ok) {
+        throw new Error('Error al actualizar el cliente');
+    }
+    return response.json(); //Devuelve el cliente actualizado
+}
+
+export async function createCliente(clienteData) {
+    const response = await fetch(`${API_BASE_URL}/clientes`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clienteData),
+    });
+    if (!response.ok) {
+        throw new Error('Error al crear el cliente');
+    }
+    return response.json(); //Devuelve el cliente creado
+}

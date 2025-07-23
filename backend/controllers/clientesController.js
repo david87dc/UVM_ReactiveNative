@@ -25,11 +25,21 @@ exports.getById = async (req, res) => {
 // Crear un cliente
 exports.create = async (req, res) => {
   try {
+    // Validar que el cliente no exista
+    const existingCliente = await Cliente.findOne({
+      where: { correo: req.body.correo, is_deleted: false }
+    });
+    if (existingCliente) {
+      return res.status(400).json({ error: 'El cliente ya existe' });
+    }
+    //Indicar la fecha de creación y actualizacion al cliente que se registra
+    req.body.create_time = new Date();
+    req.body.update_time = new Date();
+
     const cliente = await Cliente.create(req.body);
     res.status(201).json(cliente);
   } catch (err) {
     console.error("Error al crear el cliente: ",err.message);
-
     res.status(500).json({ error: err.message });
   }
 };
